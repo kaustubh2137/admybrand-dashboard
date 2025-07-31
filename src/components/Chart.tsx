@@ -1,10 +1,41 @@
 // components/Chart.tsx
 'use client';
-import { LineChart, Line, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, BarChart, Bar, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  ResponsiveContainer,
+} from 'recharts';
 
+// Color palette for pie chart
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
-export function LineGraph({ data }: { data: any[] }) {
+// ---------- Type Definitions ----------
+interface LineChartData {
+  date: string;
+  value: number;
+}
+
+interface BarChartData {
+  source: string;
+  users: number;
+}
+
+interface PieChartData {
+  type: string;
+  percent: number;
+}
+
+// ---------- Chart Components ----------
+
+export function LineGraph({ data }: { data: LineChartData[] }) {
   return (
     <ResponsiveContainer width="100%" height={250}>
       <LineChart data={data}>
@@ -17,7 +48,7 @@ export function LineGraph({ data }: { data: any[] }) {
   );
 }
 
-export function BarGraph({ data }: { data: any[] }) {
+export function BarGraph({ data }: { data: BarChartData[] }) {
   return (
     <ResponsiveContainer width="100%" height={250}>
       <BarChart data={data}>
@@ -30,7 +61,7 @@ export function BarGraph({ data }: { data: any[] }) {
   );
 }
 
-export function PieGraph({ data }: { data: any[] }) {
+export function PieGraph({ data }: { data: PieChartData[] }) {
   return (
     <ResponsiveContainer width="100%" height={250}>
       <PieChart>
